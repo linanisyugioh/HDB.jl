@@ -6,8 +6,8 @@ lazy = false
 os = "windows"
 
     [[hdb_library.download]]
-    sha256 = "bad00092138fb58ce3139337904c9edaa1ccc9885c433c4bb507601627945dfa"
-    url = "https://github.com/linanisyugioh/HDB.jl/releases/download/v0.1.0/hdb_windows_x64.zip"
+    sha256 = "0d720818a8beba475555cf8de2894ffeaa7d540d11811985d05b64a1cace07a4"
+    url = "https://github.com/linanisyugioh/HDB.jl/releases/download/v0.1.0/hdb_windows_x64.tar.gz"
 
 [[hdb_library]]
 arch = "x86_64"
