@@ -1,0 +1,20 @@
+# Artifacts.toml
+[[hdb_library]]
+arch = "x86_64"
+git-tree-sha1 = "21b8bf913c85aa8e10c6499d4cebdee9be13065a"
+lazy = false
+os = "windows"
+
+    [[hdb_library.download]]
+    sha256 = "bad00092138fb58ce3139337904c9edaa1ccc9885c433c4bb507601627945dfa"
+    url = "https://github.com/linanisyugioh/HDB.jl/releases/download/v0.1.0/hdb_windows_x64.zip"
+
+[[hdb_library]]
+arch = "x86_64"
+git-tree-sha1 = "f065695bdb5892dea62d81239d7a1970977889da"
+lazy = false
+os = "linux"
+
+    [[hdb_library.download]]
+    sha256 = "ae4eb4b1d785b94d2ee0ecf69a0254cff3a7a8b32dbacb2bb2b85c0248a9c444"
+    url = "https://github.com/linanisyugioh/HDB.jl/releases/download/v0.1.0/hdb_linux_x64.tar.gz"
