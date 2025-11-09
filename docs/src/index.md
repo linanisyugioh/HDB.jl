@@ -10,7 +10,6 @@ Documentation for [HDB](https://github.com/linanisyugioh/HDB.jl).
 ```
 
 ```@autodocs
-Modules = [HDB]
 folder = "Z:/hdb_data/"
 db_id = hdb_open_db(folder)
 flags = 0
