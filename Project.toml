@@ -5,13 +5,11 @@ authors = ["linan linanisyugioh@163.com"]
 
 [deps]
 CBinding = "d43a6710-96b8-4a2d-833c-c424785e5374"
-Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
-Libdl = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
-Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
 StringEncodings = "69024149-9ee7-55f6-a4c4-859efe599b68"
 
 [compat]
 CBinding = "1"
+StringEncodings = "0.3"
 julia = "1.8"
 
 [extras]
