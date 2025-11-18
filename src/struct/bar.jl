@@ -16,5 +16,5 @@ typedef struct t_SecurityKdata{
 }SecurityKdata;
 
 #pragma pack(pop)"
-SecurityKdata = c"struct t_SecurityKdata"
-bar = (SecurityKdata, )
+global SecurityKdata = c"struct t_SecurityKdata"
+global bar = (SecurityKdata, )
