@@ -34,7 +34,36 @@ end
 
 c``
 c"#include <stdint.h>"
-
+if isfile("struct/bar.jl")
+    include("struct/bar.jl")
+    println("HDB bar succ.")
+else
+    println("HDB bar fail.")
+end
+if isfile("struct/baseinfo.jl")
+    include("struct/baseinfo.jl")
+    println("HDB baseinfo succ.")
+end
+if isfile("struct/fundmentals.jl")
+    include("struct/fundmentals.jl")
+    println("HDB fundmentals succ.")
+end
+if isfile("struct/hkdata.jl")
+    include("struct/hkdata.jl")
+    println("HDB hkdata succ.")
+end
+if isfile("struct/marketdata.jl")
+    include("struct/marketdata.jl")
+    println("HDB marketdata succ.")
+end
+if isfile("struct/staticinfo.jl")
+    include("struct/staticinfo.jl")
+    println("HDB staticinfo succ.")
+end
+if isfile("struct/zzzsdata.jl")
+    include("struct/zzzsdata.jl")
+    println("HDB zzzsdata succ.")
+end
 const type_tuple = (UInt8, Int16, UInt16, Int32, UInt32, Int64, UInt64, Float32, Float64, UInt8, UInt8,
  UInt8, Int32, Int32, UInt32, UInt32, Int64, Int64, UInt64, UInt64)
 
@@ -286,7 +315,7 @@ function generate_cstruct(data_types::Vector{HDataType}, len::Integer, file::Str
     structdefine = "c\";\n#pragma pack(push, 1)\n"
     type_names = String[]
     for j = 1:len
-        md_type = md_types[j]
+        md_type = data_types[j]
         fields = md_type.fields
         field_count = md_type.field_count
         type_name = unsafe_string(pointer([md_type.type...]))
@@ -318,7 +347,8 @@ function generate_cstruct(data_types::Vector{HDataType}, len::Integer, file::Str
     structdefine = string(structdefine, vname)
     open(file,"w") do io
         write(io, structdefine)
-    end           
+    end
+    nothing    
 end
 export generate_cstruct
 
