@@ -4,7 +4,52 @@ using StringEncodings
 using CBinding
 using Pkg.Artifacts
 
-println("load HDB")
+println("=== HDB 预编译调试信息 ===")
+println("模块文件: ", @__FILE__)
+println("模块目录: ", @__DIR__)
+println("当前工作目录: ", pwd())
+println("LOAD_PATH: ", LOAD_PATH)
+
+# 测试相对路径和绝对路径
+test_files = [
+    "struct/bar.jl",
+    "struct/baseinfo.jl", 
+    "struct/fundmentals.jl"
+]
+
+for test_file in test_files
+    println("\n=== 测试文件: ", test_file, " ===")
+    
+    # 测试相对路径
+    println("相对路径: ", test_file)
+    println("相对路径存在: ", isfile(test_file))
+    
+    # 测试绝对路径
+    abs_path = joinpath(@__DIR__, test_file)
+    println("绝对路径: ", abs_path)
+    println("绝对路径存在: ", isfile(abs_path))
+    
+    # 如果相对路径存在，尝试包含
+    if isfile(test_file)
+        println("尝试使用相对路径包含...")
+        include(test_file)
+        println("✓ 相对路径包含成功")
+    else
+        println("✗ 相对路径包含失败")
+    end
+    
+    # 如果绝对路径存在，尝试包含
+    if isfile(abs_path)
+        println("尝试使用绝对路径包含...")
+        include(abs_path)
+        println("✓ 绝对路径包含成功")
+    else
+        println("✗ 绝对路径包含失败")
+    end
+end
+
+println("\n=== 开始正常模块加载 ===")
+
 # 使用 Artifacts 动态加载库文件
 function __init__()
     # 确保 artifact 可用
