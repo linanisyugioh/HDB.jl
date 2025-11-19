@@ -5,52 +5,7 @@ using CBinding
 using Pkg.Artifacts
 c``
 c"#include <stdint.h>"
-println("=== HDB 详细调试信息 ===")
-println("启动时间: ", now())
-println("模块文件: ", @__FILE__)
-println("模块目录: ", @__DIR__)
-println("当前工作目录: ", pwd())
-println("Julia 版本: ", VERSION)
-
-# 测试所有结构体文件的路径
-struct_files = [
-    "fundmentals.jl",
-    "hkdata.jl", 
-    "bar.jl",
-    "baseinfo.jl",
-    "marketdata.jl",
-    "staticinfo.jl",
-    "zzzsdata.jl"
-]
-
-println("\n=== 路径测试 ===")
-for file in struct_files
-    rel_path = "struct/" * file
-    abs_path = joinpath(@__DIR__, "struct", file)
-    
-    println("\n文件: ", file)
-    println("  相对路径: ", rel_path)
-    println("  相对路径存在: ", isfile(rel_path))
-    println("  绝对路径: ", abs_path)
-    println("  绝对路径存在: ", isfile(abs_path))
-    
-    # 尝试包含
-    if isfile(rel_path)
-        println("  ✓ 相对路径包含成功")
-        include(rel_path)
-    else
-        println("  ✗ 相对路径包含失败")
-    end
-    
-    if isfile(abs_path)
-        println("  ✓ 绝对路径包含成功")
-        include(abs_path)
-    else
-        println("  ✗ 绝对路径包含失败")
-    end
-end
-
-println("\n=== 开始正常模块加载 ===")
+const MODULE_ROOT = @__DIR__
 
 # 使用 Artifacts 动态加载库文件
 function __init__()
@@ -71,18 +26,6 @@ function __init__()
     if !isfile(lib) || !isfile(clientlib)
         @error "HDB library files not found. Please make sure the package is installed correctly."
     end
-    if isfile("struct/fundmentals.jl")
-    include("struct/fundmentals.jl")
-    println("HDB fundmentals succ.")
-    else
-    println("HDB fundmentals faild.")
-    end
-    if isfile("struct/hkdata.jl")
-    include("struct/hkdata.jl")
-    println("HDB hkdata succ.")
-    else
-    println("HDB hkdata faild.")
-    end
 end
 
 @enum HRetCode HRetCode_OK = 0 HRetCode_NotFound = -1 HRetCode_Corruption = -2 HRetCode_NotSupported = -3 HRetCode_InvalidArgument = -4 HRetCode_IOError = -5 HRetCode_Incomplete = -6 HRetCode_Full = -8 HRetCode_NotEnoughMemory = -9 HRetCode_EOF = -10 HRetCode_InvalidTime = -11 HRetCode_NetTimeout = -12 HRetCode_ConnError = -13 HRetCode_AuthError = -14 HRetCode_NetIOError = -15 HRetCode_ExceedLimit = -16
@@ -92,30 +35,14 @@ end
 @enum HFieldFlag HFieldFlag_Optional = 1
 @enum HClientCreateFileOption HClientCF_FailOnExist = 0 HClientCF_ClearCurrData HClientCF_AppendData
 
-if isfile("struct/bar.jl")
-    include("struct/bar.jl")
-    println("HDB bar succ.")
-else
-    println("HDB bar faild.")
-end
-
-if isfile("struct/baseinfo.jl")
-    include("struct/baseinfo.jl")
-    println("HDB baseinfo succ.")
-else
-    println("HDB baseinfo faild.")
-end
-
-
-
-if isfile("struct/marketdata.jl")
-    include("struct/marketdata.jl")
-    
-    println("HDB marketdata succ.")
-end
-if isfile("struct/staticinfo.jl")
-    include("struct/staticinfo.jl")
-    println("HDB staticinfo succ.")
+for file in ["bar.jl", "baseinfo.jl", "fundmentals.jl", "hkdata.jl", "marketdata.jl", "staticinfo.jl"]
+    file_path = joinpath(MODULE_ROOT, "struct", file)
+    if isfile(file_path)
+        include(file_path)
+        println("HDB $file included successfully.")
+    else
+        @warn "HDB struct file $file not found at $file_path"
+    end
 end
 
 const type_tuple = (UInt8, Int16, UInt16, Int32, UInt32, Int64, UInt64, Float32, Float64, UInt8, UInt8,
