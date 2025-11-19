@@ -133,7 +133,7 @@ function hdb_create_file(db_id::UInt64, path::String, ci_type::HDataType, data_t
                         packet_size::Integer = 128*1024)::UInt64
     ci_type_r = Ref{HDataType}(ci_type)
     type_num = length(data_types)
-    errcode = ccall((:hdb_create_file, lib), UInt64, (UInt64, Ptr{UInt8}, Ptr{HDataType}, Ptr{HDataType}, Cint, Cint), db_id, path, ci_type_r, md_types, type_num, packet_size)
+    errcode = ccall((:hdb_create_file, lib), UInt64, (UInt64, Ptr{UInt8}, Ptr{HDataType}, Ptr{HDataType}, Cint, Cint), db_id, path, ci_type_r, data_types, type_num, packet_size)
 end
 export hdb_create_file
 
