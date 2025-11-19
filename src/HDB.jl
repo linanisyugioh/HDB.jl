@@ -23,6 +23,18 @@ function __init__()
     if !isfile(lib) || !isfile(clientlib)
         @error "HDB library files not found. Please make sure the package is installed correctly."
     end
+    if isfile("struct/fundmentals.jl")
+    include("struct/fundmentals.jl")
+    println("HDB fundmentals succ.")
+    else
+    println("HDB fundmentals faild.")
+    end
+    if isfile("struct/hkdata.jl")
+    include("struct/hkdata.jl")
+    println("HDB hkdata succ.")
+    else
+    println("HDB hkdata faild.")
+    end
 end
 
 @enum HRetCode HRetCode_OK = 0 HRetCode_NotFound = -1 HRetCode_Corruption = -2 HRetCode_NotSupported = -3 HRetCode_InvalidArgument = -4 HRetCode_IOError = -5 HRetCode_Incomplete = -6 HRetCode_Full = -8 HRetCode_NotEnoughMemory = -9 HRetCode_EOF = -10 HRetCode_InvalidTime = -11 HRetCode_NetTimeout = -12 HRetCode_ConnError = -13 HRetCode_AuthError = -14 HRetCode_NetIOError = -15 HRetCode_ExceedLimit = -16
@@ -32,28 +44,27 @@ end
 @enum HFieldFlag HFieldFlag_Optional = 1
 @enum HClientCreateFileOption HClientCF_FailOnExist = 0 HClientCF_ClearCurrData HClientCF_AppendData
 
-c``
-c"#include <stdint.h>"
 if isfile("struct/bar.jl")
     include("struct/bar.jl")
     println("HDB bar succ.")
 else
-    println("HDB bar fail.")
+    println("HDB bar faild.")
 end
+c``
+c"#include <stdint.h>"
+
 if isfile("struct/baseinfo.jl")
     include("struct/baseinfo.jl")
     println("HDB baseinfo succ.")
+else
+    println("HDB baseinfo faild.")
 end
-if isfile("struct/fundmentals.jl")
-    include("struct/fundmentals.jl")
-    println("HDB fundmentals succ.")
-end
-if isfile("struct/hkdata.jl")
-    include("struct/hkdata.jl")
-    println("HDB hkdata succ.")
-end
+
+
+
 if isfile("struct/marketdata.jl")
     include("struct/marketdata.jl")
+    
     println("HDB marketdata succ.")
 end
 if isfile("struct/staticinfo.jl")

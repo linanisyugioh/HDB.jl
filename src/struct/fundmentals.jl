@@ -12,5 +12,5 @@ typedef struct t_QxData{
 }QxData;
 
 #pragma pack(pop)"
-QxData = c"struct t_QxData"
-fundmentals = (QxData, )
+global QxData = c"struct t_QxData"
+global fundmentals = (QxData, )
