@@ -5,47 +5,48 @@ using CBinding
 using Pkg.Artifacts
 c``
 c"#include <stdint.h>"
-println("=== HDB 预编译调试信息 ===")
+println("=== HDB 详细调试信息 ===")
+println("启动时间: ", now())
 println("模块文件: ", @__FILE__)
 println("模块目录: ", @__DIR__)
 println("当前工作目录: ", pwd())
-println("LOAD_PATH: ", LOAD_PATH)
+println("Julia 版本: ", VERSION)
 
-# 测试相对路径和绝对路径
-test_files = [
-    "struct/bar.jl",
-    "struct/baseinfo.jl", 
-    "struct/fundmentals.jl"
+# 测试所有结构体文件的路径
+struct_files = [
+    "fundmentals.jl",
+    "hkdata.jl", 
+    "bar.jl",
+    "baseinfo.jl",
+    "marketdata.jl",
+    "staticinfo.jl",
+    "zzzsdata.jl"
 ]
 
-for test_file in test_files
-    println("\n=== 测试文件: ", test_file, " ===")
+println("\n=== 路径测试 ===")
+for file in struct_files
+    rel_path = "struct/" * file
+    abs_path = joinpath(@__DIR__, "struct", file)
     
-    # 测试相对路径
-    println("相对路径: ", test_file)
-    println("相对路径存在: ", isfile(test_file))
+    println("\n文件: ", file)
+    println("  相对路径: ", rel_path)
+    println("  相对路径存在: ", isfile(rel_path))
+    println("  绝对路径: ", abs_path)
+    println("  绝对路径存在: ", isfile(abs_path))
     
-    # 测试绝对路径
-    abs_path = joinpath(@__DIR__, test_file)
-    println("绝对路径: ", abs_path)
-    println("绝对路径存在: ", isfile(abs_path))
-    
-    # 如果相对路径存在，尝试包含
-    if isfile(test_file)
-        println("尝试使用相对路径包含...")
-        include(test_file)
-        println("✓ 相对路径包含成功")
+    # 尝试包含
+    if isfile(rel_path)
+        println("  ✓ 相对路径包含成功")
+        include(rel_path)
     else
-        println("✗ 相对路径包含失败")
+        println("  ✗ 相对路径包含失败")
     end
     
-    # 如果绝对路径存在，尝试包含
     if isfile(abs_path)
-        println("尝试使用绝对路径包含...")
+        println("  ✓ 绝对路径包含成功")
         include(abs_path)
-        println("✓ 绝对路径包含成功")
     else
-        println("✗ 绝对路径包含失败")
+        println("  ✗ 绝对路径包含失败")
     end
 end
 
