@@ -4,6 +4,7 @@ using StringEncodings
 using CBinding
 using Pkg.Artifacts
 
+println("load HDB")
 # 使用 Artifacts 动态加载库文件
 function __init__()
     # 确保 artifact 可用
@@ -50,6 +51,7 @@ if isfile("struct/bar.jl")
 else
     println("HDB bar faild.")
 end
+
 c``
 c"#include <stdint.h>"
 
@@ -71,10 +73,7 @@ if isfile("struct/staticinfo.jl")
     include("struct/staticinfo.jl")
     println("HDB staticinfo succ.")
 end
-if isfile("struct/zzzsdata.jl")
-    include("struct/zzzsdata.jl")
-    println("HDB zzzsdata succ.")
-end
+
 const type_tuple = (UInt8, Int16, UInt16, Int32, UInt32, Int64, UInt64, Float32, Float64, UInt8, UInt8,
  UInt8, Int32, Int32, UInt32, UInt32, Int64, Int64, UInt64, UInt64)
 
