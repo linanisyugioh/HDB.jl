@@ -3,7 +3,8 @@ using Dates
 using StringEncodings
 using CBinding
 using Pkg.Artifacts
-
+c``
+c"#include <stdint.h>"
 println("=== HDB 预编译调试信息 ===")
 println("模块文件: ", @__FILE__)
 println("模块目录: ", @__DIR__)
@@ -96,9 +97,6 @@ if isfile("struct/bar.jl")
 else
     println("HDB bar faild.")
 end
-
-c``
-c"#include <stdint.h>"
 
 if isfile("struct/baseinfo.jl")
     include("struct/baseinfo.jl")
