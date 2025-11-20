@@ -214,7 +214,10 @@ end
         @test db_id != 0
         
         # 尝试打开之前创建的文件
+        begin
         file_id, type_num, ci_type, data_types = hdb_open_file(db_id, "test_create_file.hdb", 0)
+        file_id
+        end
         
         if file_id != 0
             @test type_num >= 0
@@ -268,10 +271,10 @@ end
 end
 
 # 测试完成后清理
-println("清理测试环境...")
-try
-    rm("./test_db", recursive=true, force=true)
-    println("测试环境清理完成")
-catch e
-    println("清理测试环境时出现警告: $e")
-end
+#println("清理测试环境...")
+#try
+#    rm("./test_db", recursive=true, force=true)
+#    println("测试环境清理完成")
+#catch e
+#    println("清理测试环境时出现警告: $e")
+#end

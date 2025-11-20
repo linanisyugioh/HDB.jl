@@ -566,6 +566,41 @@ end
 export hdb_read_all_codelists
 
 """
+ * 向HDB文件写入数据记录。
+ *
+ * @param file_id       文件句柄
+ * @param items         数据记录数组。写入时HDataItem中的index及time_point_seq_no字段
+ *                      可不填写，系统内部将自动填充这两个字段。
+ * @param count         数据记录数量
+ *
+ * @return              成功返回0，失败返回错误码
+"""
+function hdb_write_items(file_id::UInt64, items::Vector{HDataItem}, cnt::Integer)::Int
+    len = length(items)
+    errcode = ccall((:hdb_write_items,lib), Int32, (UInt64, Ptr{HDataItem}, Cint), file_id, items, len)
+    return errcode
+end
+
+"""
+/**
+ * 从HDB文件删除给定代码的指定数据类型的所有数据记录。
+ *
+ * @param file_id       文件句柄
+ * @param symbol_list   代码列表，多个代码之间以逗号(,)分隔。
+ * @param type_list     数据类型名列表，多个数据类型名之间以逗号(,)分隔。
+ *                      为空字符串时删除所有数据类型的数据记录。
+ *
+ * @return              成功返回0，失败返回错误码
+ */
+"""
+function hdb_remove_items(file_id::UInt64, symbol_list::Vector{String}, type_list::Vector{String})::Int
+    symbol_str = join(symbol_list, ",")
+    type_str = join(type_list, ",")
+    errcode = ccall((:hdb_remove_items,lib), Int32, (UInt64, Ptr{UInt8}, Ptr{UInt8}), file_id, symbol_str, type_str)
+    return errcode
+end
+
+"""
     function hdb_open_read_task(file_id::UInt64, symbol_list::String, type_list::String; 
         begin_date::Integer=0, begin_time::Integer=0, end_date::Integer=0, end_time::Integer=0, 
         offset::Integer=0)::UInt64
