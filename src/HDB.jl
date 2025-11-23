@@ -217,7 +217,7 @@ function generate_cstruct(data_types::Vector{HDataType}, len::Integer)::Tuple{Va
         fields = md_type.fields
         field_count = md_type.field_count
         type_name = unsafe_string(pointer([md_type.type...]))
-        structdefine = string(structdefine,"typedef struct t_",type_name,"{\n")
+        structdefine = string(structdefine,"typedef struct t_",type_name,"_HDB{\n")
         for i = 1:field_count
             field = fields[i]
             field_name = unsafe_string(pointer([field.field_name...]))
@@ -231,7 +231,7 @@ function generate_cstruct(data_types::Vector{HDataType}, len::Integer)::Tuple{Va
             end
         end
         push!(type_names, type_name)
-        structdefine = string(structdefine, "}",type_name,";\n")
+        structdefine = string(structdefine, "}",type_name,"_HDB;\n")
     end
     structdefine = string(structdefine, "#pragma pack(pop)\"\nend")
     #"生成定义结构体的表达式
@@ -239,7 +239,7 @@ function generate_cstruct(data_types::Vector{HDataType}, len::Integer)::Tuple{Va
     eval(ex1)
     for k = 1:len
         type_name = type_names[k]
-        struct_rename = string(type_name," = c\"struct t_",type_name,"\"")
+        struct_rename = string(type_name," = c\"struct t_",type_name,"_HDB\"")
         println(struct_rename)
         ex1 = Meta.parse(struct_rename)
         md_type_vector[k] = eval(ex1)
@@ -261,7 +261,7 @@ function generate_cstruct(data_type::HDataType)::Tuple{Vararg{DataType}}
     fields = data_type.fields
     field_count = data_type.field_count
     type_name = unsafe_string(pointer([data_type.type...]))
-    structdefine = string(structdefine,"typedef struct t_",type_name,"{\n")
+    structdefine = string(structdefine,"typedef struct t_",type_name,"_HDB{\n")
     for i = 1:field_count
         field = fields[i]
         field_name = unsafe_string(pointer([field.field_name...]))
@@ -274,8 +274,8 @@ function generate_cstruct(data_type::HDataType)::Tuple{Vararg{DataType}}
             structdefine = string(structdefine,cfield_type," ",field_name,";\n")
         end
     end
-    structdefine = string(structdefine, "}",type_name,";\n")
-    structdefine = string(structdefine, "#pragma pack(pop)\"\n",type_name," = c\"struct t_",type_name,"\"\nend")
+    structdefine = string(structdefine, "}",type_name,"_HDB;\n")
+    structdefine = string(structdefine, "#pragma pack(pop)\"\n",type_name," = c\"struct t_",type_name,"_HDB\"\nend")
     #"生成定义结构体的表达式
     ex1 = Meta.parse(structdefine)
     eval(ex1)
@@ -300,7 +300,7 @@ function generate_cstruct(data_types::Vector{HDataType}, len::Integer, file::Str
         fields = md_type.fields
         field_count = md_type.field_count
         type_name = unsafe_string(pointer([md_type.type...]))
-        structdefine = string(structdefine,"typedef struct t_",type_name,"{\n")
+        structdefine = string(structdefine,"typedef struct t_",type_name,"_HDB{\n")
         for i = 1:field_count
             field = fields[i]
             field_name = unsafe_string(pointer([field.field_name...]))
@@ -314,14 +314,14 @@ function generate_cstruct(data_types::Vector{HDataType}, len::Integer, file::Str
             end
         end
         push!(type_names, type_name)
-        structdefine = string(structdefine, "}",type_name,";\n\n")
+        structdefine = string(structdefine, "}",type_name,"_HDB;\n\n")
     end
     structdefine = string(structdefine, "#pragma pack(pop)\"\n")
     #"将所定义的结构体类型都放在一个叫做vname的元组里面
     vname = string(vname," = (")
     for k = 1:len
         type_name = type_names[k]
-        structdefine = string(structdefine, type_name," = c\"struct t_",type_name,"\"\n")
+        structdefine = string(structdefine, type_name," = c\"struct t_",type_name,"_HDB\"\n")
         vname = string(vname, type_name, ", ")
     end
     vname = string(vname, ")\n")
