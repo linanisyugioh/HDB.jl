@@ -1,6 +1,6 @@
 c";
 #pragma pack(push, 1)
-typedef struct t_SHProductInfo{
+typedef struct t_SHProductInfo_HDB{
    uint8_t ISIN[12];
    uint8_t UpdateTime[8];
    uint8_t Symbol[32];
@@ -33,9 +33,9 @@ typedef struct t_SHProductInfo{
    uint64_t MarketQtyUpperLimit;
    uint8_t ChineseName[128];
    uint8_t MEMO[400];
-}SHProductInfo;
+}SHProductInfo_HDB;
 
-typedef struct t_SHOptionInfo{
+typedef struct t_SHOptionInfo_HDB{
    uint8_t RFStreamID[5];
    uint8_t ContractID[41];
    uint8_t ContractSymbol[80];
@@ -71,9 +71,9 @@ typedef struct t_SHOptionInfo{
    uint8_t SecurityStatusFlag[8];
    uint32_t AutoSplitDate;
    uint8_t UnderlyingSymbolEx[40];
-}SHOptionInfo;
+}SHOptionInfo_HDB;
 
-typedef struct t_SZPStock{
+typedef struct t_SZPStock_HDB{
    uint8_t SecurityIDSource[4];
    uint8_t Symbol[160];
    uint8_t SymbolEx[160];
@@ -103,9 +103,9 @@ typedef struct t_SZPStock{
    uint32_t QualificationClass;
    uint64_t Interest;
    uint8_t OfferingFlag;
-}SZPStock;
+}SZPStock_HDB;
 
-typedef struct t_SZStock{
+typedef struct t_SZStock_HDB{
    uint8_t SecurityIDSource[4];
    uint8_t Symbol[160];
    uint8_t SymbolEx[160];
@@ -142,9 +142,9 @@ typedef struct t_SZStock{
    uint8_t WeightedVotingRights;
    uint8_t IsRegistration;
    uint8_t IsVIE;
-}SZStock;
+}SZStock_HDB;
 
-typedef struct t_SZFund{
+typedef struct t_SZFund_HDB{
    uint8_t SecurityIDSource[4];
    uint8_t Symbol[160];
    uint8_t SymbolEx[160];
@@ -173,9 +173,9 @@ typedef struct t_SZFund{
    uint8_t QualificationFalg;
    uint32_t QualificationClass;
    uint64_t NAV;
-}SZFund;
+}SZFund_HDB;
 
-typedef struct t_SZBond{
+typedef struct t_SZBond_HDB{
    uint8_t SecurityIDSource[4];
    uint8_t Symbol[160];
    uint8_t SymbolEx[160];
@@ -212,9 +212,9 @@ typedef struct t_SZBond{
    uint8_t SwapFlag;
    uint8_t PutbackFlag;
    uint8_t PutbackCancelFlag;
-}SZBond;
+}SZBond_HDB;
 
-typedef struct t_SZWarrant{
+typedef struct t_SZWarrant_HDB{
    uint8_t SecurityIDSource[4];
    uint8_t Symbol[160];
    uint8_t SymbolEx[160];
@@ -251,9 +251,9 @@ typedef struct t_SZWarrant{
    uint64_t ClearingPrice;
    uint8_t ExerciseType;
    uint32_t LastTradeDay;
-}SZWarrant;
+}SZWarrant_HDB;
 
-typedef struct t_SZRepo{
+typedef struct t_SZRepo_HDB{
    uint8_t SecurityIDSource[4];
    uint8_t Symbol[160];
    uint8_t SymbolEx[160];
@@ -282,9 +282,9 @@ typedef struct t_SZRepo{
    uint8_t QualificationFalg;
    uint32_t QualificationClass;
    uint32_t ExpirationDays;
-}SZRepo;
+}SZRepo_HDB;
 
-typedef struct t_SZOption{
+typedef struct t_SZOption_HDB{
    uint8_t SecurityIDSource[4];
    uint8_t Symbol[160];
    uint8_t SymbolEx[160];
@@ -326,9 +326,9 @@ typedef struct t_SZOption{
    uint64_t ContractUnit;
    uint64_t PrevClearingPrice;
    uint64_t ContractPosition;
-}SZOption;
+}SZOption_HDB;
 
-typedef struct t_SZReits{
+typedef struct t_SZReits_HDB{
    uint8_t SecurityIDSource[4];
    uint8_t Symbol[160];
    uint8_t SymbolEx[160];
@@ -357,17 +357,17 @@ typedef struct t_SZReits{
    uint8_t QualificationFalg;
    uint32_t QualificationClass;
    uint32_t MaturityDate;
-}SZReits;
+}SZReits_HDB;
 
-typedef struct t_SZTenderer{
+typedef struct t_SZTenderer_HDB{
    uint8_t TendererID[6];
    uint8_t TendererName[200];
    uint64_t OfferingPrice;
    uint32_t BeginDate;
    uint32_t EndDate;
-}SZTenderer;
+}SZTenderer_HDB;
 
-typedef struct t_RightsIssue{
+typedef struct t_RightsIssue_HDB{
    uint8_t SecurityIDSource[4];
    uint8_t Symbol[160];
    uint8_t SymbolEx[160];
@@ -376,9 +376,9 @@ typedef struct t_RightsIssue{
    uint8_t UnderlyingSecurityIDSource[4];
    uint64_t Price;
    uint64_t Unit;
-}RightsIssue;
+}RightsIssue_HDB;
 
-typedef struct t_DerivativeAuction{
+typedef struct t_DerivativeAuction_HDB{
    uint8_t SecurityIDSource[4];
    uint64_t BuyQtyUpperLimit;
    uint64_t SellQtyUpperLimit;
@@ -396,9 +396,9 @@ typedef struct t_DerivativeAuction{
    uint64_t MarginRatioParam1;
    uint64_t MarginRatioParam2;
    uint8_t MarketMakerFlag;
-}DerivativeAuction;
+}DerivativeAuction_HDB;
 
-typedef struct t_CashAuction{
+typedef struct t_CashAuction_HDB{
    uint8_t SecurityIDSource[4];
    uint64_t BuyQtyUpperLimit;
    uint64_t SellQtyUpperLimit;
@@ -410,9 +410,9 @@ typedef struct t_CashAuction{
    uint64_t MarketSellQtyUnit;
    uint64_t PriceTick;
    uint8_t MarketMakerFlag;
-}CashAuction;
+}CashAuction_HDB;
 
-typedef struct t_PriceLimitSetting{
+typedef struct t_PriceLimitSetting_HDB{
    uint8_t Type;
    uint8_t HasPriceLimit;
    uint8_t ReferPriceType;
@@ -426,14 +426,14 @@ typedef struct t_PriceLimitSetting{
    uint8_t AuctionReferPriceType;
    uint64_t AuctionUpDownRate;
    uint64_t AuctionUpDownAbsolute;
-}PriceLimitSetting;
+}PriceLimitSetting_HDB;
 
-typedef struct t_SZCombinationStrategy{
+typedef struct t_SZCombinationStrategy_HDB{
    uint8_t StrategyID[8];
    uint32_t AutoSplitDay;
-}SZCombinationStrategy;
+}SZCombinationStrategy_HDB;
 
-typedef struct t_TInstrument{
+typedef struct t_TInstrument_HDB{
    uint8_t InstrumentName[40];
    uint64_t UpLimitPrice;
    uint64_t LowLimitPrice;
@@ -444,9 +444,9 @@ typedef struct t_TInstrument{
    uint8_t ExchangeID[9];
    int64_t LongMarginRatio;
    int64_t ShortMarginRatio;
-}TInstrument;
+}TInstrument_HDB;
 
-typedef struct t_BJNQXX{
+typedef struct t_BJNQXX_HDB{
    uint8_t ShortName[16];
    uint8_t EnglishName[20];
    uint8_t BaseCode[6];
@@ -488,9 +488,9 @@ typedef struct t_BJNQXX{
    uint8_t NetVoteFlag;
    uint8_t OtherBusStatus[4];
    int32_t UpdateTime;
-}BJNQXX;
+}BJNQXX_HDB;
 
-typedef struct t_SecurityInfo{
+typedef struct t_SecurityInfo_HDB{
    uint8_t ISIN_CODE[40];
    uint8_t EXCHMARKET_CODE[40];
    uint8_t EXCHMARKET_ANN_CODE[40];
@@ -517,26 +517,26 @@ typedef struct t_SecurityInfo{
    uint8_t CONTRACT_ID[10];
    uint8_t INFO_LISTBOARDNAME[10];
    uint32_t TRADING_STATUS;
-}SecurityInfo;
+}SecurityInfo_HDB;
 
 #pragma pack(pop)"
-SHProductInfo = c"struct t_SHProductInfo"
-SHOptionInfo = c"struct t_SHOptionInfo"
-SZPStock = c"struct t_SZPStock"
-SZStock = c"struct t_SZStock"
-SZFund = c"struct t_SZFund"
-SZBond = c"struct t_SZBond"
-SZWarrant = c"struct t_SZWarrant"
-SZRepo = c"struct t_SZRepo"
-SZOption = c"struct t_SZOption"
-SZReits = c"struct t_SZReits"
-SZTenderer = c"struct t_SZTenderer"
-RightsIssue = c"struct t_RightsIssue"
-DerivativeAuction = c"struct t_DerivativeAuction"
-CashAuction = c"struct t_CashAuction"
-PriceLimitSetting = c"struct t_PriceLimitSetting"
-SZCombinationStrategy = c"struct t_SZCombinationStrategy"
-TInstrument = c"struct t_TInstrument"
-BJNQXX = c"struct t_BJNQXX"
-SecurityInfo = c"struct t_SecurityInfo"
+SHProductInfo = c"struct t_SHProductInfo_HDB"
+SHOptionInfo = c"struct t_SHOptionInfo_HDB"
+SZPStock = c"struct t_SZPStock_HDB"
+SZStock = c"struct t_SZStock_HDB"
+SZFund = c"struct t_SZFund_HDB"
+SZBond = c"struct t_SZBond_HDB"
+SZWarrant = c"struct t_SZWarrant_HDB"
+SZRepo = c"struct t_SZRepo_HDB"
+SZOption = c"struct t_SZOption_HDB"
+SZReits = c"struct t_SZReits_HDB"
+SZTenderer = c"struct t_SZTenderer_HDB"
+RightsIssue = c"struct t_RightsIssue_HDB"
+DerivativeAuction = c"struct t_DerivativeAuction_HDB"
+CashAuction = c"struct t_CashAuction_HDB"
+PriceLimitSetting = c"struct t_PriceLimitSetting_HDB"
+SZCombinationStrategy = c"struct t_SZCombinationStrategy_HDB"
+TInstrument = c"struct t_TInstrument_HDB"
+BJNQXX = c"struct t_BJNQXX_HDB"
+SecurityInfo = c"struct t_SecurityInfo_HDB"
 baseinfo = (SHProductInfo, SHOptionInfo, SZPStock, SZStock, SZFund, SZBond, SZWarrant, SZRepo, SZOption, SZReits, SZTenderer, RightsIssue, DerivativeAuction, CashAuction, PriceLimitSetting, SZCombinationStrategy, TInstrument, BJNQXX, SecurityInfo, )

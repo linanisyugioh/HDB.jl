@@ -1,7 +1,7 @@
 folder = "Z:/hdb_data"
 path = "marketdata/tick_20251113"
 flags = 0
-len = 200
+len = 30
 db_id = hdb_open_db(folder)
 redirect_stdout(devnull) do
     global fileid, type_num, ci_type_r, data_types = hdb_open_file(db_id, path, 0, len)
@@ -17,10 +17,11 @@ hdb_close_file(fileid)
 
 path = "bar/min_bar_20251113"
 flags = 0
-len = 20
+len = 30
 redirect_stdout(devnull) do
     global fileid, type_num, ci_type_r, data_types = hdb_open_file(db_id, path, 0, len)
     data_types = data_types[1:type_num]
+    len = type_num
 end
 file = "./bar.jl"
 vname = "bar"
@@ -31,7 +32,7 @@ hdb_close_file(fileid)
 
 path = "hkdata/hk_tick_20251117"
 flags = 0
-len = 20
+len = 30
 redirect_stdout(devnull) do
     global fileid, type_num, ci_type_r, data_types = hdb_open_file(db_id, path, 0, len)
     data_types = data_types[1:type_num]

@@ -1,6 +1,6 @@
 c";
 #pragma pack(push, 1)
-typedef struct t_ZZZSIndexTick{
+typedef struct t_ZZZSIndexTick_HDB{
    uint16_t record_type;
    int32_t time;
    uint8_t stand_by[5];
@@ -22,9 +22,9 @@ typedef struct t_ZZZSIndexTick{
    uint32_t index_serial;
    uint64_t close_value_of_today2;
    uint64_t close_value_of_today3;
-}ZZZSIndexTick;
+}ZZZSIndexTick_HDB;
 
-typedef struct t_ZZZSEtfIopv{
+typedef struct t_ZZZSEtfIopv_HDB{
    uint16_t record_type;
    int32_t time;
    uint8_t stand_by[5];
@@ -32,9 +32,9 @@ typedef struct t_ZZZSEtfIopv{
    uint8_t stock_name[9];
    uint16_t market_code;
    int64_t iopv;
-}ZZZSEtfIopv;
+}ZZZSEtfIopv_HDB;
 
-typedef struct t_IndexCodeInfo{
+typedef struct t_CodeInfo_HDB{
    uint16_t record_type;
    int32_t time;
    uint8_t stand_by[5];
@@ -42,10 +42,10 @@ typedef struct t_IndexCodeInfo{
    uint8_t stock_name[9];
    uint16_t market_code;
    int64_t iopv;
-}IndexCodeInfo;
+}CodeInfo_HDB;
 
 #pragma pack(pop)"
-ZZZSIndexTick = c"struct t_ZZZSIndexTick"
-ZZZSEtfIopv = c"struct t_ZZZSEtfIopv"
-IndexCodeInfo = c"struct t_IndexCodeInfo"
-zzzsdata = (ZZZSIndexTick, ZZZSEtfIopv, IndexCodeInfo, )
+ZZZSIndexTick = c"struct t_ZZZSIndexTick_HDB"
+ZZZSEtfIopv = c"struct t_ZZZSEtfIopv_HDB"
+CodeInfo = c"struct t_CodeInfo_HDB"
+zzzsdata = (ZZZSIndexTick, ZZZSEtfIopv, CodeInfo, )

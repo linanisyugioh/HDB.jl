@@ -1,6 +1,6 @@
 c";
 #pragma pack(push, 1)
-typedef struct t_SecurityTick{
+typedef struct t_SecurityTick_HDB{
    int32_t time;
    int32_t status;
    uint32_t pre_close;
@@ -29,9 +29,9 @@ typedef struct t_SecurityTick{
    int32_t sd2;
    uint8_t trading_phase_code[8];
    int32_t pre_iopv;
-}SecurityTick;
+}SecurityTick_HDB;
 
-typedef struct t_IndexTick{
+typedef struct t_IndexTick_HDB{
    int32_t time;
    int32_t open;
    int32_t high;
@@ -40,9 +40,9 @@ typedef struct t_IndexTick{
    int64_t volume;
    int64_t turnover;
    uint32_t pre_close;
-}IndexTick;
+}IndexTick_HDB;
 
-typedef struct t_FuturesTick{
+typedef struct t_FuturesTick_HDB{
    int32_t time;
    int32_t status;
    int64_t pre_open_interest;
@@ -66,9 +66,9 @@ typedef struct t_FuturesTick{
    int64_t bid_price[5];
    uint32_t bid_vol[5];
    uint8_t trading_status;
-}FuturesTick;
+}FuturesTick_HDB;
 
-typedef struct t_OptionsTick{
+typedef struct t_OptionsTick_HDB{
    int32_t data_timestamp;
    int64_t pre_settle_price;
    int64_t settle_price;
@@ -87,9 +87,9 @@ typedef struct t_OptionsTick{
    int64_t turnover;
    uint8_t trading_phase_code[8];
    uint8_t transact_time_only[12];
-}OptionsTick;
+}OptionsTick_HDB;
 
-typedef struct t_SHStepTrade{
+typedef struct t_SHStepTrade_HDB{
    int32_t trade_index;
    int32_t trade_channel;
    int32_t trade_time;
@@ -101,9 +101,9 @@ typedef struct t_SHStepTrade{
    uint8_t bs_flag;
    uint8_t res[3];
    int64_t biz_index;
-}SHStepTrade;
+}SHStepTrade_HDB;
 
-typedef struct t_SZStepTrade{
+typedef struct t_SZStepTrade_HDB{
    uint16_t channel_no;
    int64_t appl_seq_num;
    uint8_t md_stream_id[3];
@@ -115,9 +115,9 @@ typedef struct t_SZStepTrade{
    int64_t last_qty;
    uint8_t exec_type;
    int64_t transact_time;
-}SZStepTrade;
+}SZStepTrade_HDB;
 
-typedef struct t_SZStepOrder{
+typedef struct t_SZStepOrder_HDB{
    uint16_t channel_no;
    int64_t appl_seq_num;
    uint8_t md_stream_id[3];
@@ -128,18 +128,18 @@ typedef struct t_SZStepOrder{
    uint8_t side;
    int64_t transact_time;
    uint8_t ord_type;
-}SZStepOrder;
+}SZStepOrder_HDB;
 
-typedef struct t_OrderQueueItem{
+typedef struct t_OrderQueueItem_HDB{
    int32_t time;
    int32_t side;
    int32_t price;
    int32_t order_num;
    int32_t item_num;
    int32_t volume[200];
-}OrderQueueItem;
+}OrderQueueItem_HDB;
 
-typedef struct t_SZOptionsTick{
+typedef struct t_SZOptionsTick_HDB{
    int32_t time;
    uint16_t channel_no;
    uint8_t md_stream_id[3];
@@ -165,9 +165,9 @@ typedef struct t_SZOptionsTick{
    int64_t price_upper_limit;
    int64_t price_lower_limit;
    int64_t contract_position;
-}SZOptionsTick;
+}SZOptionsTick_HDB;
 
-typedef struct t_SHStepOrder{
+typedef struct t_SHStepOrder_HDB{
    int32_t order_index;
    int32_t order_channel;
    int32_t order_time;
@@ -179,9 +179,9 @@ typedef struct t_SHStepOrder{
    uint8_t order_bs_flag;
    uint8_t res2[3];
    int64_t biz_index;
-}SHStepOrder;
+}SHStepOrder_HDB;
 
-typedef struct t_FPSHStepTrade{
+typedef struct t_FPSHStepTrade_HDB{
    int32_t trade_index;
    int32_t trade_channel;
    int32_t trade_time;
@@ -193,9 +193,9 @@ typedef struct t_FPSHStepTrade{
    uint8_t bs_flag;
    uint8_t res[3];
    int64_t biz_index;
-}FPSHStepTrade;
+}FPSHStepTrade_HDB;
 
-typedef struct t_CodeInfo{
+typedef struct t_CodeInfo_HDB{
    int32_t sec_type;
    uint8_t sec_name[24];
    int32_t date;
@@ -213,19 +213,19 @@ typedef struct t_CodeInfo{
    int32_t margin_ratio_param1;
    int32_t margin_ratio_param2;
    uint8_t sec_name_ext[61];
-}CodeInfo;
+}CodeInfo_HDB;
 
 #pragma pack(pop)"
-SecurityTick = c"struct t_SecurityTick"
-IndexTick = c"struct t_IndexTick"
-FuturesTick = c"struct t_FuturesTick"
-OptionsTick = c"struct t_OptionsTick"
-SHStepTrade = c"struct t_SHStepTrade"
-SZStepTrade = c"struct t_SZStepTrade"
-SZStepOrder = c"struct t_SZStepOrder"
-OrderQueueItem = c"struct t_OrderQueueItem"
-SZOptionsTick = c"struct t_SZOptionsTick"
-SHStepOrder = c"struct t_SHStepOrder"
-FPSHStepTrade = c"struct t_FPSHStepTrade"
-CodeInfo = c"struct t_CodeInfo"
+SecurityTick = c"struct t_SecurityTick_HDB"
+IndexTick = c"struct t_IndexTick_HDB"
+FuturesTick = c"struct t_FuturesTick_HDB"
+OptionsTick = c"struct t_OptionsTick_HDB"
+SHStepTrade = c"struct t_SHStepTrade_HDB"
+SZStepTrade = c"struct t_SZStepTrade_HDB"
+SZStepOrder = c"struct t_SZStepOrder_HDB"
+OrderQueueItem = c"struct t_OrderQueueItem_HDB"
+SZOptionsTick = c"struct t_SZOptionsTick_HDB"
+SHStepOrder = c"struct t_SHStepOrder_HDB"
+FPSHStepTrade = c"struct t_FPSHStepTrade_HDB"
+CodeInfo = c"struct t_CodeInfo_HDB"
 marketdata = (SecurityTick, IndexTick, FuturesTick, OptionsTick, SHStepTrade, SZStepTrade, SZStepOrder, OrderQueueItem, SZOptionsTick, SHStepOrder, FPSHStepTrade, CodeInfo, )

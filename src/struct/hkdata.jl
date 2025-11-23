@@ -1,6 +1,6 @@
 c";
 #pragma pack(push, 1)
-typedef struct t_HKSecurityTick{
+typedef struct t_HKSecurityTick_HDB{
    uint32_t security_code;
    int64_t time;
    int32_t pre_close_price;
@@ -16,9 +16,9 @@ typedef struct t_HKSecurityTick{
    int32_t price_s[10];
    uint64_t quantity_s[10];
    int32_t open_price;
-}HKSecurityTick;
+}HKSecurityTick_HDB;
 
-typedef struct t_HKIndexTick{
+typedef struct t_HKIndexTick_HDB{
    uint8_t index_code[11];
    uint8_t index_status;
    int64_t index_time;
@@ -35,9 +35,9 @@ typedef struct t_HKIndexTick{
    int32_t net_chg_prev_day_pct;
    uint8_t exception;
    uint8_t filler[3];
-}HKIndexTick;
+}HKIndexTick_HDB;
 
-typedef struct t_HKTradeTicker{
+typedef struct t_HKTradeTicker_HDB{
    uint32_t security_code;
    uint32_t ticker_id;
    int32_t price;
@@ -46,9 +46,9 @@ typedef struct t_HKTradeTicker{
    int16_t trd_type;
    uint8_t trd_cancel_flag;
    uint8_t filler;
-}HKTradeTicker;
+}HKTradeTicker_HDB;
 
-typedef struct t_HKCodeInfo{
+typedef struct t_HKCodeInfo_HDB{
    uint32_t security_code;
    uint8_t market_code[4];
    uint8_t isin_code[12];
@@ -90,11 +90,11 @@ typedef struct t_HKCodeInfo{
    uint8_t call_put_flag;
    uint8_t style;
    uint8_t filler7[80];
-}HKCodeInfo;
+}HKCodeInfo_HDB;
 
 #pragma pack(pop)"
-HKSecurityTick = c"struct t_HKSecurityTick"
-HKIndexTick = c"struct t_HKIndexTick"
-HKTradeTicker = c"struct t_HKTradeTicker"
-HKCodeInfo = c"struct t_HKCodeInfo"
+HKSecurityTick = c"struct t_HKSecurityTick_HDB"
+HKIndexTick = c"struct t_HKIndexTick_HDB"
+HKTradeTicker = c"struct t_HKTradeTicker_HDB"
+HKCodeInfo = c"struct t_HKCodeInfo_HDB"
 hkdata = (HKSecurityTick, HKIndexTick, HKTradeTicker, HKCodeInfo, )

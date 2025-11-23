@@ -1,6 +1,6 @@
 c";
 #pragma pack(push, 1)
-typedef struct t_Component{
+typedef struct t_Component_HDB{
    uint8_t underlying_symbol[20];
    uint8_t underlying_symbol_source[4];
    uint8_t security_name[64];
@@ -13,9 +13,9 @@ typedef struct t_Component{
    int64_t substitution_cash_amount;
    uint8_t bs_open;
    uint8_t reserved[30];
-}Component;
+}Component_HDB;
 
-typedef struct t_ETFInfo{
+typedef struct t_ETFInfo_HDB{
    uint8_t version[8];
    uint8_t etf_name[64];
    uint8_t fund_management_company[64];
@@ -48,9 +48,9 @@ typedef struct t_ETFInfo{
    int32_t all_cash_discount_rate;
    uint8_t rtgs_flag;
    uint8_t reserved[30];
-}ETFInfo;
+}ETFInfo_HDB;
 
 #pragma pack(pop)"
-Component = c"struct t_Component"
-ETFInfo = c"struct t_ETFInfo"
+Component = c"struct t_Component_HDB"
+ETFInfo = c"struct t_ETFInfo_HDB"
 staticinfo = (Component, ETFInfo, )

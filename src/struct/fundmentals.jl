@@ -1,6 +1,6 @@
 c";
 #pragma pack(push, 1)
-typedef struct t_QxData{
+typedef struct t_QxData_HDB{
    int32_t date;
    int32_t bonus_ratio;
    int32_t dividend;
@@ -9,8 +9,8 @@ typedef struct t_QxData{
    int32_t add_ratio;
    int32_t add_price;
    int32_t factor;
-}QxData;
+}QxData_HDB;
 
 #pragma pack(pop)"
-QxData = c"struct t_QxData"
+QxData = c"struct t_QxData_HDB"
 fundmentals = (QxData, )
