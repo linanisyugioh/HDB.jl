@@ -8,6 +8,8 @@ CBinding = "d43a6710-96b8-4a2d-833c-c424785e5374"
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
 Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
 StringEncodings = "69024149-9ee7-55f6-a4c4-859efe599b68"
+FinancialStruct = "d8e75018-0be8-473d-856a-83ea1b53af75"
+
 
 [compat]
 CBinding = "1"
