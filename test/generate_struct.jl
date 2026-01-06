@@ -47,7 +47,7 @@ hdb_close_file(fileid)
 
 path = "baseinfo/SecurityInfo_20251117"
 flags = 0
-len = 20
+len = 30
 redirect_stdout(devnull) do
     global fileid, type_num, ci_type_r, data_types = hdb_open_file(db_id, path, 0, len)
     data_types = data_types[1:type_num]
